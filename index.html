@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aditi Mishra | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgMain: "#faf7ff",
+                        accent: "#c084fc",
+                        accentSoft: "#e9d5ff",
+                        pinkSoft: "#fbcfe8",
+                        textDark: "#3f3f46",
+                        textMuted: "#71717a"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Gradient Moving Text */
+        .hero-name {
+            background: linear-gradient(90deg, #c084fc, #7c3aed, #6366f1, #c084fc);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 6s ease infinite, fadeSlide 1.2s ease forwards;
+            position: relative;
+            opacity: 0;
+        }
+
+        /* Gradient animation */
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Entrance animation */
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Subtle glow pulse */
+        .hero-name::after {
+            content: "Aditi Mishra";
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            filter: blur(12px);
+            opacity: 0.4;
+            background: linear-gradient(90deg, #c084fc, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* Hover shimmer */
+        .hero-name:hover {
+            transform: scale(1.05);
+            transition: 0.3s ease;
+        }
+
+        /* DARK MODE MAIN */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        /* Headings become white */
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3 {
+            color: #ffffff !important;
+        }
+
+        /* Paragraph text */
+        body.dark-mode p,
+        body.dark-mode li {
+            color: #cbd5e1 !important;
+        }
+
+        /* Muted text */
+        body.dark-mode .text-textMuted {
+            color: #94a3b8 !important;
+        }
+
+        /* Cards */
+        body.dark-mode .bg-white {
+            background-color: #1e293b !important;
+        }
+
+        /* Borders */
+        body.dark-mode .border-purple-200 {
+            border-color: #334155 !important;
+        }
+
+        /* SIDEBAR DARK MODE */
+        body.dark-mode #sidebar {
+            background-color: #111827 !important;
+            border-color: #1f2937 !important;
+        }
+
+        /* Sidebar links */
+        body.dark-mode #sidebar a {
+            color: #e5e7eb !important;
+        }
+
+        body.dark-mode #sidebar a:hover {
+            color: #c084fc !important;
+        }
+
+        /* Sidebar headings */
+        body.dark-mode #sidebar h2,
+        body.dark-mode #sidebar h3 {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .hero-name {
+            -webkit-text-fill-color: #ffffff !important;
+            background: none !important;
+        }
+
+        /* ===== SIDEBAR DARK MODE FIX ===== */
+
+        body.dark-mode #sidebar {
+            background: #0f172a !important;
+            /* deep navy */
+            border-color: #1e293b !important;
+        }
+
+        /* Sidebar main title */
+        body.dark-mode #sidebar h2 {
+            color: #ffffff !important;
+        }
+
+        /* Section headings (PROFILE, EXPERIENCE, etc.) */
+        body.dark-mode #sidebar h3 {
+            color: #94a3b8 !important;
+        }
+
+        /* Sidebar links */
+        body.dark-mode #sidebar a {
+            color: #e2e8f0 !important;
+        }
+
+        /* Hover effect */
+        body.dark-mode #sidebar a:hover {
+            color: #c084fc !important;
+        }
+
+        /* Bottom divider line */
+        body.dark-mode #sidebar .border-purple-200 {
+            border-color: #334155 !important;
+        }
+
+        /* Bottom small text */
+        body.dark-mode #sidebar p {
+            color: #94a3b8 !important;
+        }
+
+        /* ===== LIGHT MODE DEFAULT ===== */
+        .activity-card {
+            background: linear-gradient(to bottom right, #faf5ff, #ffffff);
+            border: 1px solid #e9d5ff;
+        }
+
+        .activity-card h3 {
+            color: #7c3aed;
+        }
+
+        .activity-card p {
+            color: #6b7280;
+        }
+
+        /* ===== DARK MODE VERSION ===== */
+        body.dark-mode .activity-card {
+            background: linear-gradient(to bottom right, #1e293b, #0f172a);
+            border: 1px solid #334155;
+        }
+
+        body.dark-mode .activity-card h3 {
+            color: #c084fc !important;
+        }
+
+        body.dark-mode .activity-card p {
+            color: #cbd5e1 !important;
+        }
+
+        /* ===== ACTIVITY CARDS LIGHT MODE ===== */
+        .activity-card {
+            background: linear-gradient(to bottom right, #faf5ff, #ffffff);
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+        }
+
+        .activity-title {
+            color: #7c3aed;
+        }
+
+        .activity-text {
+            color: #6b7280;
+        }
+
+        .activity-tag {
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 9999px;
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+
+        /* ===== DARK MODE ===== */
+        body.dark-mode .activity-card {
+            background: linear-gradient(to bottom right, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .activity-title {
+            color: #c084fc !important;
+        }
+
+        body.dark-mode .activity-text {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode .activity-tag {
+            background: #312e81;
+            color: #e0e7ff;
+        }
+    </style>
+</head>
+
+<body id="body" class="bg-bgMain text-textDark font-sans transition-colors duration-500">
+    <button id="themeToggle" class="fixed top-5 right-5 z-50 px-4 py-2 
+           bg-white rounded-full shadow-md 
+           text-sm font-medium text-white
+           border border-purple-200 
+           hover:bg-accentSoft transition">
+        🌙
+    </button>
+    <!-- HAMBURGER BUTTON -->
+    <button id="menuBtn"
+        class="fixed top-5 left-5 z-50 bg-white p-3 rounded-lg shadow-md border border-purple-200 hover:bg-accentSoft transition">
+        <div class="space-y-1">
+            <span class="block w-6 h-0.5 bg-accent"></span>
+            <span class="block w-6 h-0.5 bg-accent"></span>
+            <span class="block w-6 h-0.5 bg-accent"></span>
+        </div>
+    </button>
+
+    <!-- OVERLAY -->
+    <div id="overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden z-40"></div>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-white via-purple-50 to-purple-100 
+           shadow-2xl transform -translate-x-full transition-transform duration-500 
+           z-50 border-r border-purple-200 p-8 flex flex-col justify-between">
+
+        <!-- TOP SECTION -->
+        <div>
+
+            <!-- LOGO + NAME -->
+            <div class="flex items-center gap-4 mb-12">
+                <div class="relative">
+                    <img src="./aditilogo.jpeg"
+                        class="w-14 h-14 rounded-full object-cover border-2 border-accent shadow-md">
+
+                    <!-- LIVE DOT -->
+                    <span class="absolute bottom-1 right-1 w-3 h-3 bg-green-500 
+                             border-2 border-white rounded-full animate-pulse"></span>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-bold text-accent">Aditi Mishra</h2>
+                    <p class="text-xs text-textMuted">Biotech × Data</p>
+                </div>
+            </div>
+
+            <!-- CATEGORY 1 -->
+            <div class="mb-8">
+                <h3 class="text-xs uppercase tracking-wider text-textMuted mb-4">Profile</h3>
+                <ul class="space-y-4">
+                    <li><a href="#about" class="sidebar-link">About Me</a></li>
+                    <li><a href="#education" class="sidebar-link">Education</a></li>
+                    <li><a href="#skills" class="sidebar-link">Skills</a></li>
+                </ul>
+            </div>
+
+            <!-- CATEGORY 2 -->
+            <div class="mb-8">
+                <h3 class="text-xs uppercase tracking-wider text-textMuted mb-4">Experience</h3>
+                <ul class="space-y-4">
+                    <li><a href="#internships" class="sidebar-link">Internships</a></li>
+                    <li><a href="#projects" class="sidebar-link">Projects</a></li>
+                    <li><a href="#certifications" class="sidebar-link">Certifications</a></li>
+                </ul>
+            </div>
+
+            <!-- CATEGORY 3 -->
+            <div>
+                <h3 class="text-xs uppercase tracking-wider text-textMuted mb-4">Contact</h3>
+                <ul class="space-y-4">
+                    <li><a href="#contact" class="sidebar-link">Get In Touch</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM SOCIAL SECTION -->
+        <div class="pt-8 border-t border-purple-200">
+
+            <p class="text-xs text-textMuted mb-4">Connect with me</p>
+
+            <div class="flex gap-6 text-sm font-medium">
+                <a href="https://www.linkedin.com/in/aditi-mishra-9a0965299/" target="_blank"
+                    class="social-link">LinkedIn</a>
+                <a href="mailto:aditi.mishra22j@gmail.com" class="social-link">Email</a>
+            </div>
+
+        </div>
+        <style>
+            .sidebar-link {
+                display: block;
+                position: relative;
+                padding-left: 0;
+                transition: all 0.3s ease;
+                color: #3f3f46;
+            }
+
+            .sidebar-link:hover {
+                color: #c084fc;
+                transform: translateX(6px);
+            }
+
+            .sidebar-link::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                width: 0%;
+                height: 2px;
+                background: #c084fc;
+                transition: width 0.3s ease-in-out;
+            }
+
+            .sidebar-link:hover::after {
+                width: 100%;
+            }
+
+            /* Social Links */
+            .social-link {
+                transition: all 0.3s ease;
+            }
+
+            .social-link:hover {
+                color: #c084fc;
+                transform: scale(1.1);
+            }
+
+            /* Blinking Cursor */
+            .cursor {
+                display: inline-block;
+                margin-left: 4px;
+                animation: blink 1s infinite;
+                color: #7c3aed;
+            }
+
+            @keyframes blink {
+
+                0%,
+                50%,
+                100% {
+                    opacity: 1;
+                }
+
+                25%,
+                75% {
+                    opacity: 0;
+                }
+            }
+
+            .section-title {
+                display: inline-block;
+            }
+
+            .section-title::after {
+                content: "";
+                display: block;
+                width: 60%;
+                height: 4px;
+                margin: 12px auto 0;
+                border-radius: 999px;
+                background: linear-gradient(to right, #c084fc, #6366f1);
+            }
+        </style>
+
+    </div>
+    <!-- HERO -->
+    <section class="min-h-screen flex items-center justify-center pt-28 px-6">
+
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+
+            <!-- LEFT CONTENT -->
+            <div class="space-y-8 reveal">
+
+                <!-- Name -->
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-textDark">
+                    <span id="typed-name"></span><span class="cursor">|</span>
+                </h1>
+
+                <!-- Degree -->
+                <h2 class="text-3xl md:text-4xl font-extrabold text-accent">
+                    B.Tech Biotechnology
+                </h2>
+
+                <!-- Subtitle -->
+                <p class="text-lg font-medium text-purple-500">
+                    Data Analytics Learner | Aspiring Strategic Consultant
+                </p>
+
+                <!-- Description -->
+                <p class="text-textMuted text-lg leading-relaxed max-w-xl">
+                    I love solving real-world problems using data and biotechnology.
+                    From AI spoilage models to analytics-driven insights,
+                    I turn ideas into actionable impact.
+                </p>
+
+                <div class="pt-6 flex items-center gap-5">
+
+                    <!-- Resume Button -->
+                    <a href="./AditiResume.pdf" target="_blank" class="inline-flex items-center gap-3 px-8 py-3
+               bg-gradient-to-r from-purple-500 to-indigo-500
+               text-white font-semibold rounded-full
+               shadow-lg hover:shadow-2xl
+               hover:scale-105 active:scale-95
+               transition duration-300 group">
+
+                        Show Resume
+                        <span class="transform group-hover:translate-x-1 transition">
+                            →
+                        </span>
+                    </a>
+
+                    <!-- LinkedIn Icon -->
+                    <a href="https://www.linkedin.com/in/aditi-mishra-9a0965299/" target="_blank" class="p-3 bg-white rounded-full shadow-md 
+              hover:shadow-xl hover:scale-110 
+              transition duration-300">
+
+                        <img src="./linkedin-svgrepo-com.svg" class="w-6 h-6" alt="LinkedIn">
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT IMAGE -->
+            <div class="flex justify-center reveal">
+                <div class="w-80 h-[450px] bg-white rounded-3xl shadow-2xl 
+                        overflow-hidden border border-purple-200
+                        hover:shadow-purple-200 transition duration-500">
+                    <img src="./aditilogo.jpeg" class="w-full h-full object-cover" alt="Aditi Mishra">
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 bg-section transition-colors duration-500 px-6">
+        <div class="max-w-5xl mx-auto px-6 reveal">
+
+            <div
+                class="bg-white rounded-3xl shadow-2xl p-10 md:p-16 transition transform hover:scale-[1.02] duration-500">
+
+                <h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
+
+                <p class="text-gray-600 text-lg leading-relaxed text-center">
+                    I am a pre-final year B.Tech Biotechnology student deeply interested in the intersection of
+                    biotechnology and data analytics. My academic journey has equipped me with a strong foundation in
+                    molecular biology, bioinformatics, and laboratory techniques, while my growing passion for Python,
+                    SQL, and data visualization has driven me toward data-driven problem solving. I enjoy transforming
+                    complex biological and business data into meaningful insights that support smarter decisions and
+                    real-world impact.
+                    <br><br>
+                    During my internship at Verka, I gained hands-on experience in quality control, chemical and
+                    microbiological testing, and production workflows within an industrial environment. This exposure
+                    strengthened my analytical thinking, attention to detail, and understanding of quality standards and
+                    documentation practices. I am now seeking opportunities in data analysis, bioinformatics, or
+                    data-driven biotech roles where I can apply my technical skills, continue learning, and grow into a
+                    versatile, impact-oriented professional.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERNSHIPS -->
+    <section id="internships" class="py-20 bg-section transition-colors duration-500">
+
+        <div class="max-w-4xl mx-auto px-8 reveal">
+
+            <!-- Section Title -->
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-14 relative section-title">
+                Internships
+            </h2>
+
+            <!-- Cards Wrapper -->
+            <div class="space-y-20">
+
+                <!-- VERKA CARD -->
+                <div class="relative flex flex-col md:flex-row 
+                        bg-white rounded-3xl shadow-xl 
+                        overflow-hidden 
+                        hover:shadow-2xl hover:-translate-y-2 
+                        transition duration-500">
+
+                    <!-- Side Gradient Panel -->
+                    <div class="w-3 bg-gradient-to-b from-purple-500 to-indigo-500"></div>
+
+                    <div class="flex-1 p-12">
+
+                        <div class="grid md:grid-cols-3 gap-12 items-start">
+
+                            <!-- Image -->
+                            <div class="md:col-span-1">
+                                <img src="./Verka.jpeg" class="rounded-2xl shadow-md h-72 w-full object-cover">
+                            </div>
+
+                            <!-- Content -->
+                            <div class="md:col-span-2 space-y-6">
+
+                                <div>
+                                    <h3 class="text-2xl font-bold text-accent">
+                                        Quality Control & Production – VERKA
+                                    </h3>
+                                    <p class="text-xs text-textMuted mt-1 uppercase tracking-wide">
+                                        Dairy Industry Internship
+                                    </p>
+                                </div>
+
+                                <ul class="text-textMuted text-sm leading-relaxed 
+                                   space-y-3 list-disc pl-6">
+                                    <li>Performed chemical & microbiological testing on dairy products.</li>
+                                    <li>Ensured compliance with FSSAI & ISO standards.</li>
+                                    <li>Conducted fat, SNF & microbial analysis.</li>
+                                    <li>Maintained daily QC documentation and reports.</li>
+                                </ul>
+
+                                <div class="pt-6">
+                                    <a href="https://docs.google.com/document/d/13XtYKlJT3wirqBxMIur0P6N7ns01bgDc/edit"
+                                        target="_blank" class="inline-flex items-center gap-3 px-8 py-3 
+                                       bg-accent text-white 
+                                       rounded-full font-medium 
+                                       shadow-md hover:shadow-xl 
+                                       hover:scale-105 
+                                       transition duration-300 group">
+
+                                        View Internship Details
+                                        <span class="transform group-hover:translate-x-1 transition">
+                                            →
+                                        </span>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- CDP INTERNSHIP CARD -->
+                <div class="relative flex flex-col md:flex-row 
+                        bg-white rounded-3xl shadow-xl 
+                        overflow-hidden 
+                        hover:shadow-2xl hover:-translate-y-2 
+                        transition duration-500">
+
+                    <!-- Side Gradient Panel -->
+                    <div class="w-3 bg-gradient-to-b from-purple-500 to-indigo-500"></div>
+
+                    <div class="flex-1 p-12">
+
+                        <div class="grid md:grid-cols-3 gap-12 items-start">
+
+                            <!-- Image -->
+                            <div class="md:col-span-1">
+                                <img src="./CDP.jpeg" class="rounded-2xl shadow-md h-72 w-full object-cover">
+                            </div>
+
+                            <!-- Content -->
+                            <div class="md:col-span-2 space-y-6">
+
+                                <div>
+                                    <h3 class="text-2xl font-bold text-accent">
+                                        CDP – Community Development Project
+                                    </h3>
+                                    <p class="text-xs text-textMuted mt-1 uppercase tracking-wide">
+                                        One Month Program | NGO Initiative
+                                    </p>
+                                </div>
+
+                                <ul class="text-textMuted text-sm leading-relaxed 
+                                   space-y-3 list-disc pl-6">
+                                    <li>Focused on environmental awareness and public safety initiatives.</li>
+                                    <li>Organized cleanliness drives promoting hygiene and waste management.</li>
+                                    <li>Conducted tree plantation campaigns to enhance sustainability.</li>
+                                    <li>Led road safety awareness sessions for responsible citizen behavior.</li>
+                                    <li>Collaborated in planning and executing community engagement programs.</li>
+                                    <li>Completed under the guidance of Dr. Saini, Chief of the NGO.</li>
+                                </ul>
+
+                                <div class="pt-6">
+                                    <a href="" class="inline-flex items-center gap-3 px-8 py-3 
+                                       bg-accent text-white 
+                                       rounded-full font-medium 
+                                       shadow-md hover:shadow-xl 
+                                       hover:scale-105 
+                                       transition duration-300 group">
+
+                                        View Project Details
+                                        <span class="transform group-hover:translate-x-1 transition">
+                                            →
+                                        </span>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+    </section>
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24 bg-section transition-colors duration-500">
+        <div class="max-w-6xl mx-auto space-y-16 reveal">
+
+            <!-- Title -->
+            <h2 class="text-4xl font-bold text-center bg-gradient-to-r 
+                   from-purple-500 to-indigo-500 
+                   bg-clip-text text-transparent">
+                Projects
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+
+                <!-- CARD -->
+                <div class="project-card rounded-3xl p-6 transition duration-500">
+
+                    <div class="overflow-hidden rounded-2xl">
+                        <img src="./QuantumDots.jpeg" class="h-56 w-full object-cover 
+                                transition duration-500 
+                                hover:scale-105" loading="lazy">
+                    </div>
+
+                    <div class="mt-6 space-y-3">
+                        <h3 class="text-xl font-semibold project-title">
+                            <a href="https://drive.google.com/file/d/137M6U75jXQPr5Toe84RSCXpC6Nt6nMUY/view"
+                                target="_blank">
+                                Quantum Dots Review
+                            </a>
+                        </h3>
+
+                        <p class="project-text text-sm leading-relaxed">
+                            In-depth literature review on biomedical applications,
+                            synthesis techniques, and toxicity challenges of quantum dots.
+                        </p>
+
+                        <div class="flex gap-2 flex-wrap mt-4">
+                            <span class="project-tag">Research</span>
+                            <span class="project-tag">Nanotech</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- CARD -->
+                <div class="project-card rounded-3xl p-6 transition duration-500">
+
+                    <div class="overflow-hidden rounded-2xl">
+                        <img src="./SNP.png" class="h-56 w-full object-cover 
+                                transition duration-500 
+                                hover:scale-105" loading="lazy">
+                    </div>
+
+                    <div class="mt-6 space-y-3">
+                        <h3 class="text-xl font-semibold project-title">
+                            <a href="https://drive.google.com/file/d/1xwGb4tC3jpXdZrK_E8ZZ6lXj3ll8UMQJ/view"
+                                target="_blank">
+                                SNP Simulation Tool
+                            </a>
+                        </h3>
+
+                        <p class="project-text text-sm leading-relaxed">
+                            Python-based SNP mutation simulator to predict
+                            protein structural impact and biological consequences.
+                        </p>
+
+                        <div class="flex gap-2 flex-wrap mt-4">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Bioinformatics</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- CARD -->
+                <div class="project-card rounded-3xl p-6 transition duration-500">
+
+                    <div class="overflow-hidden rounded-2xl">
+                        <img src="./AIFfoodSpoilage.png" class="h-56 w-full object-cover 
+                                transition duration-500 
+                                hover:scale-105" loading="lazy">
+                    </div>
+
+                    <div class="mt-6 space-y-3">
+                        <h3 class="text-xl font-semibold project-title">
+                            <a href="https://www.linkedin.com/posts/esha-gupta-40965128b_ai-foodtech-fssai-ugcPost-7428444771112689664-6xC1"
+                                target="_blank">
+                                AI Food Spoilage Prediction
+                            </a>
+                        </h3>
+
+                        <p class="project-text text-sm leading-relaxed">
+                            Machine learning model predicting spoilage risk using
+                            microbial growth, temperature, and pH datasets.
+                        </p>
+
+                        <div class="flex gap-2 flex-wrap mt-4">
+                            <span class="project-tag">Machine Learning</span>
+                            <span class="project-tag">Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- CARD -->
+                <div class="project-card rounded-3xl p-6 transition duration-500">
+
+                    <div class="overflow-hidden rounded-2xl">
+                        <img src="./Healthcare.png" class="h-56 w-full object-cover 
+                                transition duration-500 
+                                hover:scale-105" loading="lazy">
+                    </div>
+
+                    <div class="mt-6 space-y-3">
+                        <h3 class="text-xl font-semibold project-title">
+                            Healthcare Analytics Dashboard
+                        </h3>
+
+                        <p class="project-text text-sm leading-relaxed">
+                            Interactive Power BI dashboard analyzing patient trends,
+                            disease distribution, and diagnostic efficiency.
+                        </p>
+
+                        <div class="flex gap-2 flex-wrap mt-4">
+                            <span class="project-tag">Power BI</span>
+                            <span class="project-tag">Visualization</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- SKILLS -->
+    <section id="skills" class="py-20 bg-section transition-colors duration-500">
+        <div class="max-w-6xl mx-auto space-y-12 reveal">
+
+            <h2 class="text-4xl font-bold text-center">Skills</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <div class="bg-white p-6 rounded-2xl shadow-md">
+                    <h3 class="font-semibold text-accent mb-2">Programming</h3>
+                    <p class="text-textMuted text-sm">Python<br> C<br> SQL<br> Biopython</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-md">
+                    <h3 class="font-semibold text-accent mb-2">Data Tools</h3>
+                    <p class="text-textMuted text-sm">Excel<br> Power BI<br> Pandas<br> NumPy</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-md">
+                    <h3 class="font-semibold text-accent mb-2">Quality Assurance & Compliance
+                    </h3>
+                    <p class="text-textMuted text-sm">SOP Preparation <br>
+                        Batch Records <br>
+                        Regulatory Compliance (WHO, USFDA) <br>
+                        CAPA <br>
+                        Change Control <br></p>
+                </div>
+
+
+                <div class="bg-white p-6 rounded-2xl shadow-md">
+                    <h3 class="font-semibold text-accent mb-2">Data Analytics</h3>
+                    <p class="text-textMuted text-sm">Data Cleaning & Preprocessing (handling missing values, outliers,
+                        duplicates) <br>
+                        Exploratory Data Analysis (EDA) <br>
+                        Statistical Analysis (Hypothesis Testing, Correlation, Regression) <br>
+                        Data Visualization (interactive dashboards & storytelling) <br>
+                        Model Evaluation & Performance Metrics <br></p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-md">
+                    <h3 class="font-semibold text-accent mb-2">Biotechnology & Lab Skills</h3>
+                    <p class="text-textMuted text-sm">PCR & RT-PCR
+                        <br>
+                        ELISA
+                        <br>
+                        Cell Culture Techniques
+                        <br>
+                        Microbiological Testing
+
+                        <br>
+                        Fat & SNF Analysis
+                        <br>
+                        GMP & Quality Control
+                        <br>
+                        FSSAI & ISO Compliance
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md">
+                    <h3 class="font-semibold text-accent mb-2">Community & Soft Skills</h3>
+                    <p class="text-textMuted text-sm">Team Collaboration <br> Technical Documentation <br> Report
+                        Writing <br> Public Speaking <br> Leadership <br> Project Coordination</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- EXTRA CURRICULAR ACTIVITIES -->
+    <section id="activities" class="py-24 bg-section transition-colors duration-500">
+        <div class="max-w-6xl mx-auto space-y-16 reveal">
+
+            <h2 class="text-4xl font-bold text-center bg-gradient-to-r 
+                   from-purple-500 to-indigo-500 
+                   bg-clip-text text-transparent">
+                Extra-Curricular Activities
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-14">
+
+                <!-- POSTER PRESENTATION 1 -->
+                <div class="activity-card rounded-3xl p-8 transition duration-500">
+                    <div class="overflow-hidden rounded-2xl">
+                        <img src="./BoneMarrowTransplant.jpeg" class="w-full h-72 object-cover rounded-2xl 
+                                hover:scale-105 transition duration-500">
+                    </div>
+
+                    <div class="mt-6 space-y-4">
+                        <h3 class="text-2xl font-semibold activity-title">
+                            Research Poster Presentation – Bone Marrow Transplantation
+                        </h3>
+
+                        <p class="activity-text leading-relaxed">
+                            Presented a detailed research poster on bone marrow transplantation,
+                            covering methodology, survival trends, and clinical outcomes.
+                            Strengthened scientific communication, data interpretation,
+                            and analytical explanation skills.
+                        </p>
+
+                        <div class="flex gap-3 flex-wrap pt-3">
+                            <span class="activity-tag">Scientific Research</span>
+                            <span class="activity-tag">Data Interpretation</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- POSTER PRESENTATION 2 -->
+                <div class="activity-card rounded-3xl p-8 transition duration-500">
+                    <div class="overflow-hidden rounded-2xl">
+                        <img src="./HeavyMetalPoster.jpeg" class="w-full h-72 object-cover rounded-2xl 
+                                hover:scale-105 transition duration-500">
+                    </div>
+
+                    <div class="mt-6 space-y-4">
+                        <h3 class="text-2xl font-semibold activity-title">
+                            Research Poster – Marine Metal Resistant Bacteria
+                        </h3>
+
+                        <p class="activity-text leading-relaxed">
+                            Presented findings on bioremediation using marine bacteria for
+                            heavy metal detoxification. Demonstrated environmental
+                            sustainability applications and innovative microbial strategies.
+                        </p>
+
+                        <div class="flex gap-3 flex-wrap pt-3">
+                            <span class="activity-tag">Bioremediation</span>
+                            <span class="activity-tag">Sustainability</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- BIOINNOVATE CONFERENCE -->
+                <div class="activity-card rounded-3xl p-8 transition duration-500">
+                    <div class="overflow-hidden rounded-2xl">
+                        <img src="./PosterPresentationGang.jpeg" class="w-full h-72 object-cover rounded-2xl 
+                                hover:scale-105 transition duration-500">
+                    </div>
+
+                    <div class="mt-6 space-y-4">
+                        <h3 class="text-2xl font-semibold activity-title">
+                            BioInnovate Conference Participation
+                        </h3>
+
+                        <p class="activity-text leading-relaxed">
+                            Participated in BioInnovate conference, engaging with
+                            research scholars and faculty members. Enhanced networking,
+                            scientific discussion skills, and exposure to emerging
+                            biotechnology innovations.
+                        </p>
+
+                        <div class="flex gap-3 flex-wrap pt-3">
+                            <span class="activity-tag">Conference</span>
+                            <span class="activity-tag">Professional Networking</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- AGRITHON 2.0 -->
+                <div class="activity-card rounded-3xl p-8 transition duration-500">
+                    <div class="overflow-hidden rounded-2xl">
+                        <img src="./Agrithon.jpeg" class="w-full h-72 object-cover rounded-2xl 
+                                hover:scale-105 transition duration-500">
+                    </div>
+
+                    <div class="mt-6 space-y-4">
+                        <h3 class="text-2xl font-semibold activity-title">
+                            Agrithon 2.0 Hackathon – LPU
+                        </h3>
+
+                        <p class="activity-text leading-relaxed">
+                            Participated in Agrithon 2.0, a sustainability-driven
+                            agricultural innovation hackathon. Collaborated in team-based
+                            problem solving to design innovative solutions for
+                            modern agricultural challenges.
+                        </p>
+
+                        <div class="flex gap-3 flex-wrap pt-3">
+                            <span class="activity-tag">Hackathon</span>
+                            <span class="activity-tag">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="py-24 bg-section transition-colors duration-500">
+        <div class="max-w-6xl mx-auto space-y-14 reveal">
+
+            <!-- Section Title -->
+            <h2 class="text-4xl font-bold text-center bg-gradient-to-r 
+                   from-purple-500 to-indigo-500 
+                   bg-clip-text text-transparent">
+                Certifications
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-10">
+
+                <!-- CARD 1 -->
+                <div class="cert-card p-8 rounded-3xl transition duration-500">
+                    <h3 class="text-xl font-semibold mb-3">
+                        Introduction to Python
+                    </h3>
+                    <p class="text-sm mb-6">
+                        Saylor Academy <br>
+                        Issued Sep 2023 <br>
+                        Credential ID 8371844815AM
+                    </p>
+
+                    <a href="https://drive.google.com/file/d/1ONddFKF_ic0JpJvLnQOZFT0mA2jRogmU/view" target="_blank"
+                        class="cert-btn">
+                        Show Certificate
+                    </a>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="cert-card p-8 rounded-3xl transition duration-500">
+                    <h3 class="text-xl font-semibold mb-3">
+                        SQL for Data Analytics
+                    </h3>
+                    <p class="text-sm mb-6">
+                        Internshala <br>
+                        Issued Sep 2025 <br>
+                        Credential ID 3772957
+                    </p>
+
+                    <a href="https://trainings.internshala.com/view_certificate/62u6qg4qmaj/brv520ndo6i" target="_blank"
+                        class="cert-btn">
+                        Show Certificate
+                    </a>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="cert-card p-8 rounded-3xl transition duration-500">
+                    <h3 class="text-xl font-semibold mb-3">
+                        Introduction to Good Manufacturing Practices
+                    </h3>
+                    <p class="text-sm mb-6">
+                        Pharmuni <br>
+                        Issued Jan 2026 <br>
+                        Credential ID 929886220299
+                    </p>
+
+                    <a href="https://trainings.internshala.com/view_certificate/62u6qg4qmaj/brv520ndo6i" target="_blank"
+                        class="cert-btn">
+                        Show Certificate
+                    </a>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="cert-card p-8 rounded-3xl transition duration-500">
+                    <h3 class="text-xl font-semibold mb-3">
+                        Data to Diagnosis: Healthcare with Python & ML
+                    </h3>
+                    <p class="text-sm mb-6">
+                        LPU School of Bioengineering and Biosciences <br>
+                        Issued Feb 2025 <br>
+                        Credential ID 383129
+                    </p>
+
+                    <a href="https://drive.google.com/file/d/114s1JtYMX6e9CYLhmMBLtaaKpZP9owXb/view?usp=drivesdk"
+                        target="_blank" class="cert-btn">
+                        Show Certificate
+                    </a>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="cert-card p-8 rounded-3xl transition duration-500">
+                    <h3 class="text-xl font-semibold mb-3">
+                        Introduction to Data Analytics
+                    </h3>
+                    <p class="text-sm mb-6">
+                        United Latino Students Association <br>
+                        Issued Feb 2026 <br>
+                        Credential ID 06P1T4BUTP47
+                    </p>
+
+                    <a href="https://www.coursera.org/account/accomplishments/verify/06P1T4BUTP47" target="_blank"
+                        class="cert-btn">
+                        Show Certificate
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- EDUCATION -->
+    <section id="education" class="py-20 bg-section transition-colors duration-500">
+        <div class="max-w-5xl mx-auto reveal">
+
+            <h2 class="text-4xl font-bold text-center mb-16">Education</h2>
+
+            <div class="relative border-l-4 border-accent pl-8 space-y-12">
+
+                <!-- University -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-lg transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+                    <span class="text-sm text-accent font-semibold">2023 – Present</span>
+                    <h3 class="text-2xl font-bold mt-2">Lovely Professional University</h3>
+                    <p class="text-textMuted mt-2">B.Tech in Biotechnology</p>
+                    <p class="mt-2 font-medium">CGPA: <span class="text-accent">7.32</span></p>
+                </div>
+
+                <!-- 12th -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-lg transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+                    <span class="text-sm text-accent font-semibold">2021</span>
+                    <h3 class="text-xl font-bold mt-2">Senior Secondary (12th) <br> Noida International Public School,
+                        Noida</h3>
+                    <p class="text-textMuted mt-2">Percentage: <span class="font-medium text-accent">73%</span></p>
+                </div>
+
+                <!-- 10th -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-lg transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+                    <span class="text-sm text-accent font-semibold">2019</span>
+                    <h3 class="text-xl font-bold mt-2">Secondary (10th) <br> BSP SSS10 Durg, Bhilai</h3>
+                    <p class="text-textMuted mt-2">Percentage: <span class="font-medium text-accent">81%</span></p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 bg-section transition-colors duration-500">
+        <div class="max-w-6xl mx-auto reveal">
+
+            <div class="contact-wrapper rounded-3xl overflow-hidden grid md:grid-cols-2">
+
+                <!-- LEFT SIDE -->
+                <div class="contact-left p-12 flex flex-col justify-center">
+
+                    <h2 class="text-4xl font-bold mb-6">
+                        Let’s Connect
+                    </h2>
+
+                    <p class="mb-8 leading-relaxed">
+                        Have a project, collaboration idea, or just want to say hello?
+                        I’d love to hear from you. Let’s build something impactful together.
+                    </p>
+
+                    <div class="space-y-4 text-sm">
+                        <p>📍 Punjab, India</p>
+                        <p>📧 aditi.mishra22j@gmail.com</p>
+                        <p>💼 Open to internships & Data Analytics roles</p>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="contact-right p-12">
+
+                    <form id="contactForm" class="space-y-6">
+
+                        <input id="name" type="text" placeholder="Full Name" class="contact-input">
+
+                        <input id="email" type="email" placeholder="Email Address" class="contact-input">
+
+                        <input id="subject" type="text" placeholder="Subject" class="contact-input">
+
+                        <textarea id="message" rows="4" placeholder="Your Message..." class="contact-input"></textarea>
+
+                        <button type="submit" class="contact-btn">
+                            Send Message →
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- MODERN GLASS FOOTER -->
+<footer class="relative mt-40">
+
+    <!-- CTA SECTION -->
+    <div class="footer-cta-section mx-auto max-w-6xl px-10 py-16 rounded-3xl mb-16">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold footer-cta-title">
+                    Let’s Build Something Meaningful
+                </h2>
+                <p class="footer-cta-text mt-3">
+                    Open to internships, collaborations, research & consulting opportunities.
+                </p>
+            </div>
+
+            <a href="#contact" class="footer-main-btn">
+                Start a Conversation →
+            </a>
+
+        </div>
+    </div>
+
+    <!-- MAIN FOOTER -->
+    <div class="footer-container transition-colors duration-500">
+
+        <div class="max-w-7xl mx-auto px-10 py-20 grid md:grid-cols-4 gap-14">
+
+            <!-- Brand -->
+            <div class="space-y-5">
+                <h3 class="text-2xl font-bold footer-brand">
+                    Aditi Mishra
+                </h3>
+                <p class="footer-text leading-relaxed">
+                    Biotechnology × Data Analytics  
+                    Bridging science and strategy through data-driven innovation.
+                </p>
+            </div>
+
+            <!-- Explore -->
+            <div>
+                <h4 class="footer-heading mb-5">Explore</h4>
+                <ul class="space-y-3 footer-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#internships">Internships</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                </ul>
+            </div>
+
+            <!-- Focus Areas -->
+            <div>
+                <h4 class="footer-heading mb-5">Focus Areas</h4>
+                <ul class="space-y-3 footer-links">
+                    <li>Data Analytics</li>
+                    <li>Machine Learning</li>
+                    <li>Bioinformatics</li>
+                    <li>Healthcare Insights</li>
+                    <li>Research & Innovation</li>
+                </ul>
+            </div>
+
+            <!-- Connect -->
+            <div>
+                <h4 class="footer-heading mb-5">Connect</h4>
+                <div class="space-y-3 footer-text text-sm">
+                    <p>📍 Punjab, India</p>
+                    <p>📧 aditi.mishra22j@gmail.com</p>
+                </div>
+
+                <div class="flex gap-4 mt-6">
+                    <a href="https://www.linkedin.com/in/aditi-mishra-9a0965299/" 
+                       target="_blank" class="footer-social">
+                        LinkedIn
+                    </a>
+                    <a href="mailto:aditi.mishra22j@gmail.com" 
+                       class="footer-social">
+                        Email
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="footer-bottom text-center py-8 text-sm">
+            © 2026 Aditi Mishra · Crafted with precision & purpose
+        </div>
+
+    </div>
+</footer>
+
+    <style>
+        /* ================= FOOTER DESIGN 2 ================= */
+
+.footer-cta-section {
+    background: linear-gradient(to right, #f3e8ff, #ffffff);
+    border: 1px solid #e9d5ff;
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.08);
+}
+
+.footer-cta-title {
+    color: #6d28d9;
+}
+
+.footer-cta-text {
+    color: #6b7280;
+}
+
+.footer-main-btn {
+    padding: 14px 28px;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #a855f7, #6366f1);
+    color: white;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.footer-main-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(124, 58, 237, 0.3);
+}
+
+.footer-container {
+    background: #ffffff;
+    border-top: 1px solid #e9d5ff;
+}
+
+.footer-brand {
+    color: #7c3aed;
+}
+
+.footer-heading {
+    font-weight: 600;
+    color: #4c1d95;
+}
+
+.footer-text {
+    color: #6b7280;
+}
+
+.footer-links a {
+    color: #6b7280;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #7c3aed;
+    transform: translateX(4px);
+}
+
+.footer-social {
+    padding: 8px 18px;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #a855f7, #6366f1);
+    color: white;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.footer-social:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+.footer-bottom {
+    border-top: 1px solid #e9d5ff;
+    color: #6b7280;
+}
+
+/* ===== DARK MODE ===== */
+
+body.dark-mode .footer-cta-section {
+    background: linear-gradient(to right, #1e293b, #0f172a);
+    border: 1px solid #334155;
+}
+
+body.dark-mode .footer-cta-title {
+    color: #c084fc !important;
+}
+
+body.dark-mode .footer-cta-text,
+body.dark-mode .footer-text,
+body.dark-mode .footer-links a,
+body.dark-mode .footer-bottom {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .footer-container {
+    background: #0f172a;
+    border-top: 1px solid #334155;
+}
+
+body.dark-mode .footer-heading {
+    color: #e2e8f0;
+}
+
+body.dark-mode .footer-links a:hover {
+    color: #c084fc !important;
+}
+
+body.dark-mode .footer-bottom {
+    border-top: 1px solid #334155;
+}        /* ================= CONTACT SECTION ================= */
+
+        /* Wrapper */
+        .contact-wrapper {
+            background: linear-gradient(to bottom right, #faf5ff, #ffffff);
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.1);
+        }
+
+        /* Left Section */
+        .contact-left {
+            background: linear-gradient(to bottom right, #a855f7, #6366f1);
+            color: white;
+        }
+
+        .contact-left p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Right Section */
+        .contact-right {
+            background: transparent;
+        }
+
+        /* Inputs */
+        .contact-input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            transition: 0.3s ease;
+        }
+
+        .contact-input:focus {
+            outline: none;
+            border-color: #a855f7;
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+        }
+
+        /* Button */
+        .contact-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 9999px;
+            background: linear-gradient(to right, #a855f7, #6366f1);
+            color: white;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ===== DARK MODE ===== */
+
+        body.dark-mode .contact-wrapper {
+            background: linear-gradient(to bottom right, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode .contact-left {
+            background: linear-gradient(to bottom right, #6d28d9, #4338ca);
+        }
+
+        body.dark-mode .contact-right {
+            background: transparent;
+        }
+
+        body.dark-mode .contact-input {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .contact-input::placeholder {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .contact-input:focus {
+            border-color: #c084fc;
+            box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.3);
+        }
+
+        /* ================= PROJECT CARDS ================= */
+
+        /* Light Mode */
+        .project-card {
+            background: linear-gradient(to bottom right, #faf5ff, #ffffff);
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.08);
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+        }
+
+        .project-title {
+            color: #7c3aed;
+        }
+
+        .project-text {
+            color: #6b7280;
+        }
+
+        .project-tag {
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 9999px;
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+
+        /* Dark Mode */
+        body.dark-mode .project-card {
+            background: linear-gradient(to bottom right, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .project-title {
+            color: #c084fc !important;
+        }
+
+        body.dark-mode .project-text {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode .project-tag {
+            background: #312e81;
+            color: #e0e7ff;
+        }
+
+        /* ================= CERTIFICATIONS ================= */
+
+        /* Light Mode */
+        .cert-card {
+            background: linear-gradient(to bottom right, #faf5ff, #ffffff);
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.08);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+        }
+
+        .cert-card h3 {
+            color: #7c3aed;
+        }
+
+        .cert-card p {
+            color: #6b7280;
+        }
+
+        /* Button */
+        .cert-btn {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 500;
+            background: linear-gradient(to right, #a855f7, #6366f1);
+            color: white;
+            transition: 0.3s ease;
+        }
+
+        .cert-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+        }
+
+
+        /* Dark Mode */
+        body.dark-mode .cert-card {
+            background: linear-gradient(to bottom right, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .cert-card h3 {
+            color: #c084fc !important;
+        }
+
+        body.dark-mode .cert-card p {
+            color: #cbd5e1 !important;
+        }
+
+        /* Footer Links */
+        .footer-link {
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #7c3aed;
+            transform: translateX(5px);
+        }
+
+        .footer-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0%;
+            height: 2px;
+            background: #7c3aed;
+            transition: 0.3s ease;
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* Social pills */
+        .social-pill {
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-size: 14px;
+            background: linear-gradient(to right, #c084fc, #6366f1);
+            color: white;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 10px rgba(124, 58, 237, 0.2);
+        }
+
+        .social-pill:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        /* Dark Mode Footer */
+        body.dark-mode .dark-footer {
+            background: #111827 !important;
+        }
+
+        body.dark-mode footer {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .footer-link {
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .footer-link:hover {
+            color: #c084fc;
+        }
+
+        body.dark-mode .border-purple-100 {
+            border-color: #1f2937 !important;
+        }
+    </style>
+    <script>
+        document.querySelectorAll(".sidebar-link").forEach(link => {
+            link.addEventListener("click", () => {
+                sidebar.classList.add("opacity-80");
+                setTimeout(() => {
+                    sidebar.classList.remove("opacity-80");
+                }, 200);
+            });
+        });
+    </script>
+    <script>
+        const toggleBtn = document.getElementById("themeToggle");
+        const body = document.getElementById("body");
+
+        let mode = 0; // 0 = Light, 1 = Mid, 2 = Dark
+
+        toggleBtn.addEventListener("click", () => {
+
+            mode = (mode + 1) % 3;
+
+            body.classList.remove("mid-mode", "dark-mode");
+
+            if (mode === 1) {
+                body.classList.add("dark-mode");
+                toggleBtn.innerHTML = "☀️";
+            }
+
+            else {
+                toggleBtn.innerHTML = "🌙";
+            }
+
+        });
+    </script>
+    <script>
+        const contactForm = document.getElementById("contactForm");
+
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const subject = document.getElementById("subject").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !subject || !message) {
+                alert("Please fill in all fields before submitting.");
+                return;
+            }
+
+            alert("Successfully Submitted!");
+            contactForm.reset();
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const text = "Aditi Mishra.";
+            const speed = 300; // typing speed
+            let i = 0;
+            const target = document.getElementById("typed-name");
+
+            function typeWriter() {
+                if (i < text.length) {
+                    target.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+
+            typeWriter();
+        });
+    </script>
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+
+        // Open sidebar
+        menuBtn.addEventListener("click", () => {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        });
+
+        // Close when clicking overlay
+        overlay.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        });
+
+        // Close when clicking any link
+        document.querySelectorAll("#sidebar a").forEach(link => {
+            link.addEventListener("click", () => {
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.add("hidden");
+            });
+        });
+
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+    <script>
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+
+</body>
+
+</html>
